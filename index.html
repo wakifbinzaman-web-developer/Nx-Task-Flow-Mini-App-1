@@ -185,46 +185,198 @@ f<!doctype html>
     </div></nav>
     <div class="toast" id="toast" role="status"></div>
     <script>
-     const API_URL = "https://nx-task-flow-bot-api-backed.onrender.com";
-      
-    const tg = window.Telegram?.WebApp;
-      if (tg) { tg.ready(); tg.expand(); }
+  const API_URL = "https://nx-task-flow-bot-api-backed.onrender.com";
 
-      const user = tg?.initDataUnsafe?.user;
-      if (user) {
-        const name = user.first_name || "Welcome back";
-        document.getElementById("greeting").textContent = `Welcome, ${name}`;
-        document.getElementById("profile-name").textContent = `${user.first_name || ""} ${user.last_name || ""}`.trim() || "NX Member";
-        document.getElementById("profile-username").textContent = user.username ? `@${user.username}` : "Telegram member";
-        document.getElementById("avatar").textContent = (user.first_name || "N").slice(0, 1).toUpperCase();
+  const tg = window.Telegram?.WebApp;
+
+  if (tg) {
+    tg.ready();
+    tg.expand();
+  }
+
+  const user = tg?.initDataUnsafe?.user;
+
+  const greeting = document.getElementById("greeting");
+  const profileName = document.getElementById("profile-name");
+  const profileUsername = document.getElementById("profile-username");
+  const avatar = document.getElementById("avatar");
+
+  if (user) {
+    const name = user.first_name || "Welcome back";
+
+    greeting.textContent = `Welcome, ${name}`;
+    profileName.textContent =
+      `${user.first_name || ""} ${user.last_name || ""}`.trim() ||
+      "NX Member";
+
+    profileUsername.textContent = user.username
+      ? `@${user.username}`
+      : "Telegram member";
+
+    avatar.textContent = (user.first_name || "N")
+      .slice(0, 1)
+      .toUpperCase();
+  }
+
+  const toast = document.getElementById("toast");
+  let toastTimer;
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2400);
+  }
+
+  function showPage(page) {
+    document.querySelectorAll(".page").forEach((el) => {
+      el.classList.toggle(
+        "active",
+        el.id === `${page}-page`
+      );
+    });
+
+    document.querySelectorAll("[data-page]").forEach((el) => {
+      el.classList.toggle(
+        "active",
+        el.dataset.page === page &&
+        el.classList.contains("nav-item")
+      );
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  function openTask(taskId) {
+    if (taskId === "community" && tg) {
+      tg.openTelegramLink(
+        "https://t.me/nxtaskflowannouncement"
+      );
+    }
+  }
+
+  async function loadAccountData() {
+    if (!tg || !tg.initData) {
+      console.log("Telegram WebApp initData unavailable");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${API_URL}/api/me?init_data=${encodeURIComponent(tg.initData)}`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        console.error("API error:", data);
+        showToast("Unable to load account data");
+        return;
       }
 
-      const toast = document.getElementById("toast");
-      let toastTimer;
-      function showToast(message) {
-        toast.textContent = message; toast.classList.add("show");
-        clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+      const account = data.user;
+      const tasks = data.tasks || [];
+
+      /* Balance */
+      const balanceAmount = document.querySelector(
+        "#home-page .balance-amount"
+      );
+
+      if (balanceAmount) {
+        balanceAmount.innerHTML =
+          `${account.balance} <span>NX</span>`;
       }
-      function showPage(page) {
-        document.querySelectorAll(".page").forEach((el) => el.classList.toggle("active", el.id === `${page}-page`));
-        document.querySelectorAll("[data-page]").forEach((el) => el.classList.toggle("active", el.dataset.page === page && el.classList.contains("nav-item")));
-        window.scrollTo({ top: 0, behavior: "smooth" });
+
+      /* Withdraw balance */
+      const withdrawBalance = document.querySelector(
+        "#withdraw-page .balance-amount"
+      );
+
+      if (withdrawBalance) {
+        withdrawBalance.innerHTML =
+          `${account.balance} <span>NX</span>`;
       }
-      document.addEventListener("click", (event) => {
-        const pageTarget = event.target.closest("[data-page]");
-        if (pageTarget) showPage(pageTarget.dataset.page);
-        const toastTarget = event.target.closest("[data-toast]");
-        if (toastTarget) showToast(toastTarget.dataset.toast);
-      });
-            function openTask(taskId) {
-        if (taskId === "community") {
-          if (tg) {
-            tg.openTelegramLink(
-              "https://t.me/nxtaskflowannouncement"
-            );
-          }
+
+      /* Completed tasks */
+      const completedElements =
+        document.querySelectorAll(
+          "#profile-page .feature-card strong"
+        );
+
+      if (completedElements.length > 0) {
+        completedElements[0].textContent =
+          account.completed_tasks;
+      }
+
+      /* Referral count */
+      const referralProgress =
+        document.querySelector(
+          "#referral-page .feature-card strong"
+        );
+
+      if (referralProgress) {
+        referralProgress.textContent =
+          `${account.referrals} / 5`;
+      }
+
+      /* Update task statuses */
+      const taskCards =
+        document.querySelectorAll(
+          "#tasks-page .task-card"
+        );
+
+      tasks.forEach((task) => {
+        const card = [...taskCards].find((el) =>
+          el.querySelector(".task-title")?.textContent.trim() ===
+          task.title
+        );
+
+        if (!card) return;
+
+        const action = card.querySelector(".task-action");
+
+        if (!action) return;
+
+        if (task.status === "completed") {
+          action.textContent = "Completed";
+          action.disabled = true;
+        } else if (task.status === "pending") {
+          action.textContent = "Pending";
         }
-      }
-    </script>
+      });
+
+      console.log("NX account loaded:", data);
+
+    } catch (error) {
+      console.error("Failed to load account:", error);
+      showToast("Connection error");
+    }
+  }
+
+  document.addEventListener("click", (event) => {
+    const pageTarget =
+      event.target.closest("[data-page]");
+
+    if (pageTarget) {
+      showPage(pageTarget.dataset.page);
+    }
+
+    const toastTarget =
+      event.target.closest("[data-toast]");
+
+    if (toastTarget) {
+      showToast(toastTarget.dataset.toast);
+    }
+  });
+
+  loadAccountData();
+</script>
   </body>
 </html>
