@@ -158,7 +158,10 @@ f<!doctype html>
       </section>
 
       <section class="page" id="referral-page"><div class="page-header"><button class="back" data-page="home">← Home</button><p class="eyebrow">Grow together</p><h1>Refer & Earn</h1><p class="hero-copy">Share your invite link with friends.</p></div>
-        <div class="referral-card"><p class="eyebrow">Your referral link</p><h2>Invite your circle</h2><p class="muted">Referral tracking will connect to the bot in a future update.</p><div class="referral-code"><span>t.me/NXTaskFlowBot?start=ref</span><button class="copy-button" data-toast="Invite link copied">Copy</button></div></div>
+        <div class="referral-card"><p class="eyebrow">Your referral link</p><h2>Invite your circle</h2><p class="muted">Referral tracking will connect to the bot in a future update.</p><div class="referral-code">
+  <span id="referral-link">Loading...</span>
+  <button class="copy-button" id="copy-referral">Copy</button>
+</div></div>
         <div class="section"><h2>Referral progress</h2><div class="feature-card"><div class="balance-footer"><span class="muted">Valid referrals</span><strong>0 / 5</strong></div><div style="height:8px;margin-top:14px;border-radius:99px;background:#25334a"><div style="width:8%;height:100%;border-radius:99px;background:var(--pink)"></div></div></div></div>
       </section>
 
@@ -195,7 +198,24 @@ f<!doctype html>
   }
 
   const user = tg?.initDataUnsafe?.user;
+  const referralLink = document.getElementById("referral-link");
+const copyReferral = document.getElementById("copy-referral");
 
+if (user) {
+  const inviteLink = `https://t.me/NXTaskFlowBot?start=ref_${user.id}`;
+
+  referralLink.textContent = inviteLink;
+
+  copyReferral.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(inviteLink);
+      showToast("Invite link copied");
+    } catch (error) {
+      console.error("Copy failed:", error);
+      showToast("Unable to copy link");
+    }
+  });
+}
   const greeting = document.getElementById("greeting");
   const profileName = document.getElementById("profile-name");
   const profileUsername = document.getElementById("profile-username");
