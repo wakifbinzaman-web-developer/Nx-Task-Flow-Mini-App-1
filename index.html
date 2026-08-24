@@ -216,6 +216,15 @@ f<!doctype html>
         const toastTarget = event.target.closest("[data-toast]");
         if (toastTarget) showToast(toastTarget.dataset.toast);
       });
+            function openTask(taskId) {
+        if (taskId === "community") {
+          if (tg) {
+            tg.openTelegramLink(
+              "https://t.me/nxtaskflowannouncement"
+            );
+          }
+        }
+      }
     </script>
   </body>
 </html>
