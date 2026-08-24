@@ -1,4 +1,4 @@
-<!doctype html>
+f<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -37,7 +37,7 @@
       button { font: inherit; }
       .app-shell { width: min(100%, 560px); min-height: 100vh; margin: 0 auto; padding: 24px 18px 112px; }
       .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
-      .brand { display: flex; align-items: center; gap: 11px; }
+      .brand { display: lex; align-items: center; gap: 11px; }
       .brand-mark {
         display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px;
         color: white; font-weight: 800; letter-spacing: -1px;
@@ -185,7 +185,9 @@
     </div></nav>
     <div class="toast" id="toast" role="status"></div>
     <script>
-      const tg = window.Telegram?.WebApp;
+     const API_URL = "https://nx-task-flow-bot-api-backed.onrender.com";
+      
+    const tg = window.Telegram?.WebApp;
       if (tg) { tg.ready(); tg.expand(); }
 
       const user = tg?.initDataUnsafe?.user;
