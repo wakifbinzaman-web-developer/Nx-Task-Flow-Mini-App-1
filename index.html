@@ -1,4 +1,4 @@
-f<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,6 +24,7 @@ f<!doctype html>
 
       * { box-sizing: border-box; }
       html { background: var(--bg); }
+
       body {
         margin: 0;
         min-width: 320px;
@@ -34,369 +35,1994 @@ f<!doctype html>
         font: 15px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         -webkit-font-smoothing: antialiased;
       }
+
       button { font: inherit; }
-      .app-shell { width: min(100%, 560px); min-height: 100vh; margin: 0 auto; padding: 24px 18px 112px; }
-      .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
-      .brand { display: lex; align-items: center; gap: 11px; }
+
+      .app-shell {
+        width: min(100%, 560px);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 24px 18px 112px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 26px;
+      }
+
+      .brand {
+        display: lex;
+        align-items: center;
+        gap: 11px;
+      }
+
       .brand-mark {
-        display: grid; place-items: center; width: 42px; height: 42px; border-radius: 14px;
-        color: white; font-weight: 800; letter-spacing: -1px;
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        color: white;
+        font-weight: 800;
+        letter-spacing: -1px;
         background: linear-gradient(145deg, #42b7ff, #2063ee);
         box-shadow: 0 10px 25px rgba(47, 140, 255, 0.3);
       }
-      .brand-title { font-weight: 800; letter-spacing: -0.4px; }
-      .brand-subtitle { color: var(--muted); font-size: 12px; }
-      .icon-button {
-        display: grid; place-items: center; width: 40px; height: 40px; padding: 0;
-        border: 1px solid var(--border); border-radius: 13px; color: var(--text);
-        background: rgba(255,255,255,0.04); cursor: pointer;
+
+      .brand-title {
+        font-weight: 800;
+        letter-spacing: -0.4px;
       }
-      .eyebrow { margin: 0 0 7px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+      .brand-subtitle {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .icon-button {
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        color: var(--text);
+        background: rgba(255,255,255,0.04);
+        cursor: pointer;
+      }
+
+      .eyebrow {
+        margin: 0 0 7px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
       h1, h2, p { margin-top: 0; }
-      h1 { margin-bottom: 7px; font-size: clamp(27px, 8vw, 36px); line-height: 1.04; letter-spacing: -1.4px; }
-      h2 { margin-bottom: 14px; font-size: 19px; letter-spacing: -0.5px; }
+
+      h1 {
+        margin-bottom: 7px;
+        font-size: clamp(27px, 8vw, 36px);
+        line-height: 1.04;
+        letter-spacing: -1.4px;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: 19px;
+        letter-spacing: -0.5px;
+      }
+
       .muted { color: var(--muted); }
-      .hero-copy { max-width: 360px; color: var(--muted); }
+
+      .hero-copy {
+        max-width: 360px;
+        color: var(--muted);
+      }
+
       .balance-card {
-        position: relative; overflow: hidden; margin: 26px 0 28px; padding: 22px;
-        border: 1px solid rgba(121, 193, 255, 0.28); border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        margin: 26px 0 28px;
+        padding: 22px;
+        border: 1px solid rgba(121, 193, 255, 0.28);
+        border-radius: 24px;
         background: linear-gradient(135deg, #183c72, #10213e 72%);
         box-shadow: var(--shadow);
       }
+
       .balance-card::after {
-        position: absolute; right: -44px; bottom: -76px; width: 190px; height: 190px;
-        border: 1px solid rgba(255,255,255,0.14); border-radius: 50%; content: "";
-        box-shadow: 0 0 0 22px rgba(255,255,255,0.035), 0 0 0 45px rgba(255,255,255,0.025);
+        position: absolute;
+        right: -44px;
+        bottom: -76px;
+        width: 190px;
+        height: 190px;
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 50%;
+        content: "";
+        box-shadow:
+          0 0 0 22px rgba(255,255,255,0.035),
+          0 0 0 45px rgba(255,255,255,0.025);
       }
-      .balance-label { color: #abc9ee; font-size: 13px; }
-      .balance-amount { margin: 8px 0 17px; font-size: 38px; font-weight: 800; letter-spacing: -1.5px; }
-      .balance-amount span { margin-left: 5px; color: #b9d8fa; font-size: 17px; font-weight: 700; letter-spacing: 0; }
-      .balance-footer { display: flex; align-items: center; justify-content: space-between; color: #abc9ee; font-size: 12px; }
-      .pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 99px; color: #d7f7ea; background: rgba(69, 209, 154, 0.14); }
-      .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+      .balance-label {
+        color: #abc9ee;
+        font-size: 13px;
+      }
+
+      .balance-amount {
+        margin: 8px 0 17px;
+        font-size: 38px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+      }
+
+      .balance-amount span {
+        margin-left: 5px;
+        color: #b9d8fa;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .balance-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #abc9ee;
+        font-size: 12px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 9px;
+        border-radius: 99px;
+        color: #d7f7ea;
+        background: rgba(69, 209, 154, 0.14);
+      }
+
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
       .section { margin-top: 26px; }
-      .section-heading { display: flex; align-items: baseline; justify-content: space-between; }
-      .section-link { border: 0; padding: 0; color: var(--cyan); background: none; cursor: pointer; font-size: 13px; }
-      .task-list { display: grid; gap: 11px; }
+
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+
+      .section-link {
+        border: 0;
+        padding: 0;
+        color: var(--cyan);
+        background: none;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .task-list {
+        display: grid;
+        gap: 11px;
+      }
+
       .task-card {
-        display: flex; align-items: center; gap: 13px; padding: 14px;
-        border: 1px solid var(--border); border-radius: 18px; background: var(--surface);
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 14px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: var(--surface);
       }
-      .task-icon { display: grid; place-items: center; flex: 0 0 auto; width: 42px; height: 42px; border-radius: 14px; font-size: 20px; background: rgba(47, 140, 255, 0.14); }
-      .task-icon.green { background: rgba(69, 209, 154, 0.13); }
-      .task-icon.orange { background: rgba(255, 180, 84, 0.13); }
-      .task-info { min-width: 0; flex: 1; }
-      .task-title { overflow: hidden; margin-bottom: 3px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-      .task-meta { color: var(--muted); font-size: 12px; }
-      .task-reward { color: var(--cyan); font-size: 12px; font-weight: 800; white-space: nowrap; }
+
+      .task-icon {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        font-size: 20px;
+        background: rgba(47, 140, 255, 0.14);
+      }
+
+      .task-icon.green {
+        background: rgba(69, 209, 154, 0.13);
+      }
+
+      .task-icon.orange {
+        background: rgba(255, 180, 84, 0.13);
+      }
+
+      .task-info {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .task-title {
+        overflow: hidden;
+        margin-bottom: 3px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .task-meta {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .task-reward {
+        color: var(--cyan);
+        font-size: 12px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
       .task-action {
-        flex: 0 0 auto; border: 0; border-radius: 11px; padding: 9px 11px; color: white;
-        background: var(--blue); cursor: pointer; font-size: 12px; font-weight: 700;
+        flex: 0 0 auto;
+        border: 0;
+        border-radius: 11px;
+        padding: 9px 11px;
+        color: white;
+        background: var(--blue);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 700;
       }
-      .task-action:active, .primary-button:active, .nav-item:active { transform: scale(0.97); }
-      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
-      .feature-card { padding: 16px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); }
-      .feature-icon { display: grid; place-items: center; width: 34px; height: 34px; margin-bottom: 12px; border-radius: 11px; color: var(--cyan); background: rgba(85, 215, 255, 0.11); }
-      .feature-card h3 { margin: 0 0 4px; font-size: 14px; }
-      .feature-card p { margin: 0; color: var(--muted); font-size: 12px; }
-      .primary-button { width: 100%; border: 0; border-radius: 15px; padding: 14px; color: white; background: linear-gradient(135deg, #318fff, #2369e7); cursor: pointer; font-weight: 800; }
-      .page { display: none; animation: rise 180ms ease-out; }
-      .page.active { display: block; }
-      .page-header { margin-bottom: 23px; }
-      .back { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 17px; border: 0; padding: 0; color: var(--cyan); background: none; cursor: pointer; }
-      .referral-card { padding: 21px; border: 1px solid rgba(207, 140, 255, 0.22); border-radius: 22px; background: linear-gradient(145deg, #34224e, #21172f); }
-      .referral-code { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 18px; padding: 11px 12px; border: 1px solid var(--border); border-radius: 12px; color: #e8d7ff; background: rgba(0,0,0,0.18); font-size: 12px; }
-      .copy-button { border: 0; color: var(--cyan); background: none; cursor: pointer; font-weight: 700; }
-      .profile-row { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
-      .avatar { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 18px; color: #071321; background: linear-gradient(135deg, #62dcff, #7d8dff); font-size: 21px; font-weight: 800; }
-      .profile-name { margin-bottom: 3px; font-size: 17px; font-weight: 800; }
-      .bottom-nav { position: fixed; right: 0; bottom: 0; left: 0; z-index: 5; display: flex; justify-content: center; padding: 10px 18px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, rgba(9,13,22,0.97) 22%); }
-      .nav-inner { display: grid; grid-template-columns: repeat(4, 1fr); width: min(100%, 524px); padding: 6px; border: 1px solid var(--border); border-radius: 20px; background: rgba(17, 24, 39, 0.94); backdrop-filter: blur(18px); }
-      .nav-item { display: grid; justify-items: center; gap: 3px; border: 0; border-radius: 15px; padding: 7px 3px; color: var(--muted); background: transparent; cursor: pointer; font-size: 10px; }
-      .nav-item.active { color: white; background: rgba(47, 140, 255, 0.2); }
-      .nav-item span:first-child { font-size: 18px; line-height: 1; }
-      .toast { position: fixed; right: 18px; bottom: 92px; left: 18px; z-index: 8; display: none; padding: 12px 14px; border: 1px solid var(--border); border-radius: 13px; color: var(--text); background: #1a2638; box-shadow: var(--shadow); text-align: center; font-size: 13px; }
-      .toast.show { display: block; animation: rise 180ms ease-out; }
-      @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-      @media (min-width: 620px) { .app-shell { padding-top: 34px; } .bottom-nav { bottom: 12px; } }
+
+      .task-action:active,
+      .primary-button:active,
+      .nav-item:active {
+        transform: scale(0.97);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+      }
+
+      .feature-card {
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: var(--surface);
+      }
+
+      .feature-icon {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 12px;
+        border-radius: 11px;
+        color: var(--cyan);
+        background: rgba(85, 215, 255, 0.11);
+      }
+
+      .feature-card h3 {
+        margin: 0 0 4px;
+        font-size: 14px;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .primary-button {
+        width: 100%;
+        border: 0;
+        border-radius: 15px;
+        padding: 14px;
+        color: white;
+        background: linear-gradient(135deg, #318fff, #2369e7);
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      .page {
+        display: none;
+        animation: rise 180ms ease-out;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      .page-header {
+        margin-bottom: 23px;
+      }
+
+      .back {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 17px;
+        border: 0;
+        padding: 0;
+        color: var(--cyan);
+        background: none;
+        cursor: pointer;
+      }
+
+      .referral-card {
+        padding: 21px;
+        border: 1px solid rgba(207, 140, 255, 0.22);
+        border-radius: 22px;
+        background: linear-gradient(145deg, #34224e, #21172f);
+      }
+
+      .referral-code {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 18px;
+        padding: 11px 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: #e8d7ff;
+        background: rgba(0,0,0,0.18);
+        font-size: 12px;
+      }
+
+      .copy-button {
+        border: 0;
+        color: var(--cyan);
+        background: none;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .profile-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .avatar {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        color: #071321;
+        background: linear-gradient(135deg, #62dcff, #7d8dff);
+        font-size: 21px;
+        font-weight: 800;
+      }
+
+      .profile-name {
+        margin-bottom: 3px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        padding: 10px 18px calc(10px + env(safe-area-inset-bottom));
+        background: linear-gradient(transparent, rgba(9,13,22,0.97) 22%);
+      }
+
+      .nav-inner {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        width: min(100%, 524px);
+        padding: 6px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        background: rgba(17, 24, 39, 0.94);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-item {
+        display: grid;
+        justify-items: center;
+        gap: 3px;
+        border: 0;
+        border-radius: 15px;
+        padding: 7px 3px;
+        color: var(--muted);
+        background: transparent;
+        cursor: pointer;
+        font-size: 10px;
+      }
+
+      .nav-item.active {
+        color: white;
+        background: rgba(47, 140, 255, 0.2);
+      }
+
+      .nav-item span:first-child {
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      .toast {
+        position: fixed;
+        right: 18px;
+        bottom: 92px;
+        left: 18px;
+        z-index: 8;
+        display: none;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        color: var(--text);
+        background: #1a2638;
+        box-shadow: var(--shadow);
+        text-align: center;
+        font-size: 13px;
+      }
+
+      .toast.show {
+        display: block;
+        animation: rise 180ms ease-out;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (min-width: 620px) {
+        .app-shell {
+          padding-top: 34px;
+        }
+
+        .bottom-nav {
+          bottom: 12px;
+        }
+      }
     </style>
   </head>
+
   <body>
     <main class="app-shell">
+
       <section class="page active" id="home-page">
         <header class="topbar">
-          <div class="brand"><div class="brand-mark">NX</div><div><div class="brand-title">NX Task Flow</div><div class="brand-subtitle">Your daily progress hub</div></div></div>
-          <button class="icon-button" aria-label="Notifications" data-toast="Notifications will be available soon">⌁</button>
+          <div class="brand">
+            <div class="brand-mark">NX</div>
+            <div>
+              <div class="brand-title">NX Task Flow</div>
+              <div class="brand-subtitle">Your daily progress hub</div>
+            </div>
+          </div>
+
+          <button
+            class="icon-button"
+            aria-label="Notifications"
+            data-toast="Notifications will be available soon"
+          >⌁</button>
         </header>
+
         <p class="eyebrow">Good to see you</p>
         <h1 id="greeting">Welcome back</h1>
-        <p class="hero-copy">Build momentum with simple tasks and verified progress.</p>
+
+        <p class="hero-copy">
+          Build momentum with simple tasks and verified progress.
+        </p>
+
         <div class="balance-card">
           <div class="balance-label">NX Balance</div>
-          <div class="balance-amount">0 <span>NX</span></div>
-          <div class="balance-footer"><span>Available balance</span><span class="pill"><span class="dot"></span> Active account</span></div>
-        </div>
-        <div class="section">
-          <div class="section-heading"><h2>Daily Tasks</h2><button class="section-link" data-page="tasks">View all</button></div>
-          <div class="task-list">
-            <article class="task-card"><div class="task-icon">✓</div><div class="task-info"><div class="task-title">Complete your first task</div><div class="task-meta">Get started with NX</div></div><div class="task-reward">+ NX</div></article>
-            <article class="task-card"><div class="task-icon green">◎</div><div class="task-info"><div class="task-title">Join NX Task Flow Official</div><div class="task-meta">Telegram verification</div></div><div class="task-reward">+ NX</div></article>
+
+          <div class="balance-amount">
+            0 <span>NX</span>
+          </div>
+
+          <div class="balance-footer">
+            <span>Available balance</span>
+
+            <span class="pill">
+              <span class="dot"></span>
+              Active account
+            </span>
           </div>
         </div>
-        <div class="section"><h2>Quick Access</h2><div class="grid">
-          <button class="feature-card" data-page="referral" style="text-align:left"><div class="feature-icon">↗</div><h3>Refer & Earn</h3><p>Invite friends and grow together.</p></button>
-          <button class="feature-card" data-page="withdraw" style="text-align:left"><div class="feature-icon">⇩</div><h3>Withdraw</h3><p>Manage your available balance.</p></button>
-        </div></div>
-      </section>
 
-      <section class="page" id="tasks-page"><div class="page-header"><button class="back" data-page="home">← Home</button><p class="eyebrow">Stay consistent</p><h1>Daily Tasks</h1><p class="hero-copy">Finish tasks and submit them for verification.</p></div>
-        <div class="task-list">
-          <article class="task-card"><div class="task-icon">✓</div><div class="task-info"><div class="task-title">Complete your first task</div><div class="task-meta">Available · Verification required</div></div><div class="task-reward">Reward</div><button class="task-action" data-toast="Task details are frontend-only for now">Start</button></article>
-          <article class="task-card"><div class="task-icon green">◎</div><div class="task-info"><div class="task-title">Join NX Task Flow Official</div><div class="task-meta">Available · Real Telegram check in bot</div></div><div class="task-reward">10 NX</div> <button class="task-action" onclick="openTask('community')">Start</button></article>
-          <article class="task-card"><div class="task-icon orange">↗</div><div class="task-info"><div class="task-title">Refer & Earn</div><div class="task-meta">In progress · Valid referrals</div></div><div class="task-reward">Bonus</div><button class="task-action" data-page="referral">Open</button></article>
+        <div class="section">
+          <div class="section-heading">
+            <h2>Daily Tasks</h2>
+            <button class="section-link" data-page="tasks">
+              View all
+            </button>
+          </div>
+
+          <div class="task-list">
+            <article class="task-card">
+              <div class="task-icon">✓</div>
+
+              <div class="task-info">
+                <div class="task-title">
+                  Complete your first task
+                </div>
+
+                <div class="task-meta">
+                  Get started with NX
+                </div>
+              </div>
+
+              <div class="task-reward">
+                + NX
+              </div>
+            </article>
+
+            <article class="task-card">
+              <div class="task-icon green">◎</div>
+
+              <div class="task-info">
+                <div class="task-title">
+                  Join NX Task Flow Official
+                </div>
+
+                <div class="task-meta">
+                  Telegram verification
+                </div>
+              </div>
+
+              <div class="task-reward">
+                + NX
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Quick Access</h2>
+
+          <div class="grid">
+            <button
+              class="feature-card"
+              data-page="referral"
+              style="text-align:left"
+            >
+              <div class="feature-icon">↗</div>
+              <h3>Refer & Earn</h3>
+              <p>Invite friends and grow together.</p>
+            </button>
+
+            <button
+              class="feature-card"
+              data-page="withdraw"
+              style="text-align:left"
+            >
+              <div class="feature-icon">⇩</div>
+              <h3>Withdraw</h3>
+              <p>Manage your available balance.</p>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section class="page" id="referral-page"><div class="page-header"><button class="back" data-page="home">← Home</button><p class="eyebrow">Grow together</p><h1>Refer & Earn</h1><p class="hero-copy">Share your invite link with friends.</p></div>
-        <div class="referral-card"><p class="eyebrow">Your referral link</p><h2>Invite your circle</h2><p class="muted">Referral tracking will connect to the bot in a future update.</p><div class="referral-code">
-  <span id="referral-link">Loading...</span>
-  <button class="copy-button" id="copy-referral">Copy</button>
-</div></div>
-        <div class="section"><h2>Referral progress</h2><div class="feature-card"><div class="balance-footer"><span class="muted">Valid referrals</span><strong>0 / 5</strong></div><div style="height:8px;margin-top:14px;border-radius:99px;background:#25334a"><div style="width:8%;height:100%;border-radius:99px;background:var(--pink)"></div></div></div></div>
+
+      <!-- MINING PAGE ADDED -->
+      <section class="page" id="mining-page">
+
+        <div class="page-header">
+
+          <button class="back" data-page="home">
+            ← Home
+          </button>
+
+          <p class="eyebrow">
+            NX Mining
+          </p>
+
+          <h1>
+            Mining
+          </h1>
+
+          <p class="hero-copy">
+            Start mining and collect NX over time.
+          </p>
+
+        </div>
+
+
+        <div class="balance-card">
+
+          <div class="balance-label">
+            Mining Balance
+          </div>
+
+          <div class="balance-amount">
+            <span id="mining-balance">0</span>
+            <span>NX</span>
+          </div>
+
+          <div class="balance-footer">
+
+            <span id="mining-status">
+              Ready to mine
+            </span>
+
+            <span class="pill">
+              <span class="dot"></span>
+              <span id="mining-rate">
+                +1 NX / hour
+              </span>
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="feature-card"
+          style="margin-bottom:14px;"
+        >
+
+          <div class="balance-footer">
+
+            <span class="muted">
+              Mining progress
+            </span>
+
+            <strong id="mining-progress-text">
+              0%
+            </strong>
+
+          </div>
+
+
+          <div
+            style="
+              height:10px;
+              margin-top:14px;
+              border-radius:99px;
+              background:#25334a;
+              overflow:hidden;
+            "
+          >
+
+            <div
+              id="mining-progress"
+              style="
+                width:0%;
+                height:100%;
+                border-radius:99px;
+                background:var(--blue);
+                transition:width .4s ease;
+              "
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          id="mining-button"
+          onclick="toggleMining()"
+        >
+          Start Mining
+        </button>
+
+
+        <div class="section">
+
+          <div class="grid">
+
+            <div class="feature-card">
+
+              <div class="feature-icon">
+                ⚡
+              </div>
+
+              <h3>
+                Mining Rate
+              </h3>
+
+              <p id="mining-rate-card">
+                1 NX per hour
+              </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+              <div class="feature-icon">
+                ⏱
+              </div>
+
+              <h3>
+                Session
+              </h3>
+
+              <p id="mining-time">
+                Not started
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </section>
 
-      <section class="page" id="withdraw-page"><div class="page-header"><button class="back" data-page="home">← Home</button><p class="eyebrow">Your earnings</p><h1>Withdraw</h1><p class="hero-copy">Withdrawal options will appear when this feature is enabled.</p></div>
-        <div class="balance-card"><div class="balance-label">Withdrawable balance</div><div class="balance-amount">0 <span>NX</span></div><div class="balance-footer"><span>Not connected to backend</span><span class="pill"><span class="dot"></span> Coming soon</span></div></div>
-        <button class="primary-button" data-toast="Withdrawals are not enabled yet">Withdrawal options</button>
+
+      <section class="page" id="tasks-page">
+
+        <div class="page-header">
+
+          <button class="back" data-page="home">
+            ← Home
+          </button>
+
+          <p class="eyebrow">
+            Stay consistent
+          </p>
+
+          <h1>
+            Daily Tasks
+          </h1>
+
+          <p class="hero-copy">
+            Finish tasks and submit them for verification.
+          </p>
+
+        </div>
+
+        <div class="task-list">
+
+          <article class="task-card">
+
+            <div class="task-icon">
+              ✓
+            </div>
+
+            <div class="task-info">
+
+              <div class="task-title">
+                Complete your first task
+              </div>
+
+              <div class="task-meta">
+                Available · Verification required
+              </div>
+
+            </div>
+
+            <div class="task-reward">
+              Reward
+            </div>
+
+            <button
+              class="task-action"
+              data-toast="Task details are frontend-only for now"
+            >
+              Start
+            </button>
+
+          </article>
+
+
+          <article class="task-card">
+
+            <div class="task-icon green">
+              ◎
+            </div>
+
+            <div class="task-info">
+
+              <div class="task-title">
+                Join NX Task Flow Official
+              </div>
+
+              <div class="task-meta">
+                Available · Real Telegram check in bot
+              </div>
+
+            </div>
+
+            <div class="task-reward">
+              10 NX
+            </div>
+
+            <button
+              class="task-action"
+              onclick="openTask('community')"
+            >
+              Start
+            </button>
+
+          </article>
+
+
+          <article class="task-card">
+
+            <div class="task-icon orange">
+              ↗
+            </div>
+
+            <div class="task-info">
+
+              <div class="task-title">
+                Refer & Earn
+              </div>
+
+              <div class="task-meta">
+                In progress · Valid referrals
+              </div>
+
+            </div>
+
+            <div class="task-reward">
+              Bonus
+            </div>
+
+            <button
+              class="task-action"
+              data-page="referral"
+            >
+              Open
+            </button>
+
+          </article>
+
+        </div>
+
       </section>
 
-      <section class="page" id="profile-page"><div class="page-header"><button class="back" data-page="home">← Home</button><p class="eyebrow">Your account</p><h1>Profile</h1><p class="hero-copy">Your Telegram profile at a glance.</p></div>
-        <div class="profile-row"><div class="avatar" id="avatar">NX</div><div><div class="profile-name" id="profile-name">NX Member</div><div class="muted" id="profile-username">@telegram_user</div></div></div>
-        <div class="section"><div class="feature-card"><div class="balance-footer"><span class="muted">Tasks completed</span><strong>0</strong></div><div class="balance-footer" style="margin-top:14px"><span class="muted">Member since</span><strong>Today</strong></div></div></div>
+
+      <section class="page" id="referral-page">
+
+        <div class="page-header">
+
+          <button class="back" data-page="home">
+            ← Home
+          </button>
+
+          <p class="eyebrow">
+            Grow together
+          </p>
+
+          <h1>
+            Refer & Earn
+          </h1>
+
+          <p class="hero-copy">
+            Share your invite link with friends.
+          </p>
+
+        </div>
+
+
+        <div class="referral-card">
+
+          <p class="eyebrow">
+            Your referral link
+          </p>
+
+          <h2>
+            Invite your circle
+          </h2>
+
+          <p class="muted">
+            Referral tracking will connect to the bot in a future update.
+          </p>
+
+          <div class="referral-code">
+
+            <span id="referral-link">
+              Loading...
+            </span>
+
+            <button
+              class="copy-button"
+              id="copy-referral"
+            >
+              Copy
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="section">
+
+          <h2>
+            Referral progress
+          </h2>
+
+          <div class="feature-card">
+
+            <div class="balance-footer">
+
+              <span class="muted">
+                Valid referrals
+              </span>
+
+              <strong>
+                0 / 5
+              </strong>
+
+            </div>
+
+            <div
+              style="
+                height:8px;
+                margin-top:14px;
+                border-radius:99px;
+                background:#25334a
+              "
+            >
+
+              <div
+                style="
+                  width:8%;
+                  height:100%;
+                  border-radius:99px;
+                  background:var(--pink)
+                "
+              ></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </section>
 
-      <section class="page" id="help-page"><div class="page-header"><button class="back" data-page="home">← Home</button><p class="eyebrow">Need a hand?</p><h1>Help</h1><p class="hero-copy">Everything you need to get started.</p></div>
-        <div class="task-list"><div class="feature-card"><h3>How do tasks work?</h3><p>Open a task, complete the required action, and submit it through the Telegram bot for verification.</p></div><div class="feature-card"><h3>Is my balance live?</h3><p>This Mini App is currently frontend-only. Live balance and reward data are not connected yet.</p></div><div class="feature-card"><h3>Need support?</h3><p>Use the official NX Task Flow Telegram community for announcements and updates.</p></div></div>
+
+      <section class="page" id="withdraw-page">
+
+        <div class="page-header">
+
+          <button class="back" data-page="home">
+            ← Home
+          </button>
+
+          <p class="eyebrow">
+            Your earnings
+          </p>
+
+          <h1>
+            Withdraw
+          </h1>
+
+          <p class="hero-copy">
+            Withdrawal options will appear when this feature is enabled.
+          </p>
+
+        </div>
+
+
+        <div class="balance-card">
+
+          <div class="balance-label">
+            Withdrawable balance
+          </div>
+
+          <div class="balance-amount">
+            0 <span>NX</span>
+          </div>
+
+          <div class="balance-footer">
+
+            <span>
+              Not connected to backend
+            </span>
+
+            <span class="pill">
+
+              <span class="dot"></span>
+
+              Coming soon
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          data-toast="Withdrawals are not enabled yet"
+        >
+          Withdrawal options
+        </button>
+
       </section>
+
+
+      <section class="page" id="profile-page">
+
+        <div class="page-header">
+
+          <button class="back" data-page="home">
+            ← Home
+          </button>
+
+          <p class="eyebrow">
+            Your account
+          </p>
+
+          <h1>
+            Profile
+          </h1>
+
+          <p class="hero-copy">
+            Your Telegram profile at a glance.
+          </p>
+
+        </div>
+
+
+        <div class="profile-row">
+
+          <div
+            class="avatar"
+            id="avatar"
+          >
+            NX
+          </div>
+
+          <div>
+
+            <div
+              class="profile-name"
+              id="profile-name"
+            >
+              NX Member
+            </div>
+
+            <div
+              class="muted"
+              id="profile-username"
+            >
+              @telegram_user
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="section">
+
+          <div class="feature-card">
+
+            <div class="balance-footer">
+
+              <span class="muted">
+                Tasks completed
+              </span>
+
+              <strong>
+                0
+              </strong>
+
+            </div>
+
+            <div
+              class="balance-footer"
+              style="margin-top:14px"
+            >
+
+              <span class="muted">
+                Member since
+              </span>
+
+              <strong>
+                Today
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="page" id="help-page">
+
+        <div class="page-header">
+
+          <button class="back" data-page="home">
+            ← Home
+          </button>
+
+          <p class="eyebrow">
+            Need a hand?
+          </p>
+
+          <h1>
+            Help
+          </h1>
+
+          <p class="hero-copy">
+            Everything you need to get started.
+          </p>
+
+        </div>
+
+
+        <div class="task-list">
+
+          <div class="feature-card">
+
+            <h3>
+              How do tasks work?
+            </h3>
+
+            <p>
+              Open a task, complete the required action,
+              and submit it through the Telegram bot for verification.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <h3>
+              Is my balance live?
+            </h3>
+
+            <p>
+              This Mini App is currently frontend-only.
+              Live balance and reward data are not connected yet.
+            </p>
+
+          </div>
+
+
+          <div class="feature-card">
+
+            <h3>
+              Need support?
+            </h3>
+
+            <p>
+              Use the official NX Task Flow Telegram community
+              for announcements and updates.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </main>
 
-    <nav class="bottom-nav" aria-label="Main navigation"><div class="nav-inner">
-      <button class="nav-item active" data-page="home"><span>⌂</span><span>Home</span></button>
-      <button class="nav-item" data-page="tasks"><span>✓</span><span>Tasks</span></button>
-      <button class="nav-item" data-page="referral"><span>↗</span><span>Refer</span></button>
-      <button class="nav-item" data-page="profile"><span>◉</span><span>Profile</span></button>
-    </div></nav>
-    <div class="toast" id="toast" role="status"></div>
+
+    <nav
+      class="bottom-nav"
+      aria-label="Main navigation"
+    >
+
+      <div class="nav-inner">
+
+        <button
+          class="nav-item active"
+          data-page="home"
+        >
+          <span>⌂</span>
+          <span>Home</span>
+        </button>
+
+
+        <button
+          class="nav-item"
+          data-page="tasks"
+        >
+          <span>✓</span>
+          <span>Tasks</span>
+        </button>
+
+
+        <!-- MINING NAVIGATION ADDED -->
+        <button
+          class="nav-item"
+          data-page="mining"
+        >
+          <span>⛏</span>
+          <span>Mining</span>
+        </button>
+
+
+        <button
+          class="nav-item"
+          data-page="referral"
+        >
+          <span>↗</span>
+          <span>Refer</span>
+        </button>
+
+
+        <button
+          class="nav-item"
+          data-page="profile"
+        >
+          <span>◉</span>
+          <span>Profile</span>
+        </button>
+
+      </div>
+
+    </nav>
+
+
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+    ></div>
+
+
     <script>
-  const API_URL = "https://nx-task-flow-bot-api-backed.onrender.com";
 
-  const tg = window.Telegram?.WebApp;
+      const API_URL =
+        "https://nx-task-flow-bot-api-backed.onrender.com";
 
-  if (tg) {
-    tg.ready();
-    tg.expand();
-  }
 
-  const user = tg?.initDataUnsafe?.user;
-  const referralLink = document.getElementById("referral-link");
-const copyReferral = document.getElementById("copy-referral");
+      const tg =
+        window.Telegram?.WebApp;
 
-if (user) {
-  const inviteLink = `https://t.me/NXTaskFlowBot?start=ref_${user.id}`;
 
-  referralLink.textContent = inviteLink;
+      if (tg) {
 
-  copyReferral.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(inviteLink);
-      showToast("Invite link copied");
-    } catch (error) {
-      console.error("Copy failed:", error);
-      showToast("Unable to copy link");
-    }
-  });
-}
-  const greeting = document.getElementById("greeting");
-  const profileName = document.getElementById("profile-name");
-  const profileUsername = document.getElementById("profile-username");
-  const avatar = document.getElementById("avatar");
+        tg.ready();
 
-  if (user) {
-    const name = user.first_name || "Welcome back";
+        tg.expand();
 
-    greeting.textContent = `Welcome, ${name}`;
-    profileName.textContent =
-      `${user.first_name || ""} ${user.last_name || ""}`.trim() ||
-      "NX Member";
-
-    profileUsername.textContent = user.username
-      ? `@${user.username}`
-      : "Telegram member";
-
-    avatar.textContent = (user.first_name || "N")
-      .slice(0, 1)
-      .toUpperCase();
-  }
-
-  const toast = document.getElementById("toast");
-  let toastTimer;
-
-  function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2400);
-  }
-
-  function showPage(page) {
-    document.querySelectorAll(".page").forEach((el) => {
-      el.classList.toggle(
-        "active",
-        el.id === `${page}-page`
-      );
-    });
-
-    document.querySelectorAll("[data-page]").forEach((el) => {
-      el.classList.toggle(
-        "active",
-        el.dataset.page === page &&
-        el.classList.contains("nav-item")
-      );
-    });
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-
-  function openTask(taskId) {
-    if (taskId === "community" && tg) {
-      tg.openTelegramLink(
-        "https://t.me/nxtaskflowannouncement"
-      );
-    }
-  }
-
-  async function loadAccountData() {
-    if (!tg || !tg.initData) {
-      console.log("Telegram WebApp initData unavailable");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `${API_URL}/api/me?init_data=${encodeURIComponent(tg.initData)}`
-      );
-
-      const data = await response.json();
-
-      if (!response.ok || !data.ok) {
-        console.error("API error:", data);
-        showToast("Unable to load account data");
-        return;
       }
 
-      const account = data.user;
-      const tasks = data.tasks || [];
 
-      /* Balance */
-      const balanceAmount = document.querySelector(
-        "#home-page .balance-amount"
-      );
+      const user =
+        tg?.initDataUnsafe?.user;
 
-      if (balanceAmount) {
-        balanceAmount.innerHTML =
-          `${account.balance} <span>NX</span>`;
-      }
 
-      /* Withdraw balance */
-      const withdrawBalance = document.querySelector(
-        "#withdraw-page .balance-amount"
-      );
+      const referralLink =
+        document.getElementById("referral-link");
 
-      if (withdrawBalance) {
-        withdrawBalance.innerHTML =
-          `${account.balance} <span>NX</span>`;
-      }
 
-      /* Completed tasks */
-      const completedElements =
-        document.querySelectorAll(
-          "#profile-page .feature-card strong"
+      const copyReferral =
+        document.getElementById("copy-referral");
+
+
+      if (user) {
+
+        const inviteLink =
+          `https://t.me/NXTaskFlowBot?start=ref_${user.id}`;
+
+
+        referralLink.textContent =
+          inviteLink;
+
+
+        copyReferral.addEventListener(
+          "click",
+          async () => {
+
+            try {
+
+              await navigator.clipboard.writeText(
+                inviteLink
+              );
+
+              showToast(
+                "Invite link copied"
+              );
+
+            } catch (error) {
+
+              console.error(
+                "Copy failed:",
+                error
+              );
+
+              showToast(
+                "Unable to copy link"
+              );
+
+            }
+
+          }
         );
 
-      if (completedElements.length > 0) {
-        completedElements[0].textContent =
-          account.completed_tasks;
       }
 
-      /* Referral count */
-      const referralProgress =
-        document.querySelector(
-          "#referral-page .feature-card strong"
-        );
 
-      if (referralProgress) {
-        referralProgress.textContent =
-          `${account.referrals} / 5`;
+      const greeting =
+        document.getElementById("greeting");
+
+
+      const profileName =
+        document.getElementById("profile-name");
+
+
+      const profileUsername =
+        document.getElementById("profile-username");
+
+
+      const avatar =
+        document.getElementById("avatar");
+
+
+      if (user) {
+
+        const name =
+          user.first_name ||
+          "Welcome back";
+
+
+        greeting.textContent =
+          `Welcome, ${name}`;
+
+
+        profileName.textContent =
+          `${user.first_name || ""} ${user.last_name || ""}`
+            .trim() ||
+          "NX Member";
+
+
+        profileUsername.textContent =
+          user.username
+            ? `@${user.username}`
+            : "Telegram member";
+
+
+        avatar.textContent =
+          (user.first_name || "N")
+            .slice(0, 1)
+            .toUpperCase();
+
       }
 
-      /* Update task statuses */
-      const taskCards =
-        document.querySelectorAll(
-          "#tasks-page .task-card"
+
+      const toast =
+        document.getElementById("toast");
+
+
+      let toastTimer;
+
+
+      function showToast(message) {
+
+        toast.textContent =
+          message;
+
+
+        toast.classList.add(
+          "show"
         );
 
-      tasks.forEach((task) => {
-        const card = [...taskCards].find((el) =>
-          el.querySelector(".task-title")?.textContent.trim() ===
-          task.title
+
+        clearTimeout(
+          toastTimer
         );
 
-        if (!card) return;
 
-        const action = card.querySelector(".task-action");
+        toastTimer =
+          setTimeout(
+            () => {
 
-        if (!action) return;
+              toast.classList.remove(
+                "show"
+              );
 
-        if (task.status === "completed") {
-          action.textContent = "Completed";
-          action.disabled = true;
-        } else if (task.status === "pending") {
-          action.textContent = "Pending";
+            },
+            2400
+          );
+
+      }
+
+
+      function showPage(page) {
+
+        document
+          .querySelectorAll(".page")
+          .forEach((el) => {
+
+            el.classList.toggle(
+              "active",
+              el.id === `${page}-page`
+            );
+
+          });
+
+
+        document
+          .querySelectorAll("[data-page]")
+          .forEach((el) => {
+
+            el.classList.toggle(
+              "active",
+              el.dataset.page === page &&
+              el.classList.contains(
+                "nav-item"
+              )
+            );
+
+          });
+
+
+        window.scrollTo({
+
+          top: 0,
+
+          behavior: "smooth"
+
+        });
+
+      }
+
+
+      function openTask(taskId) {
+
+        if (
+          taskId === "community" &&
+          tg
+        ) {
+
+          tg.openTelegramLink(
+            "https://t.me/nxtaskflowannouncement"
+          );
+
         }
-      });
 
-      console.log("NX account loaded:", data);
+      }
 
-    } catch (error) {
-      console.error("Failed to load account:", error);
-      showToast("Connection error");
-    }
-  }
 
-  document.addEventListener("click", (event) => {
-    const pageTarget =
-      event.target.closest("[data-page]");
+      async function loadAccountData() {
 
-    if (pageTarget) {
-      showPage(pageTarget.dataset.page);
-    }
+        if (
+          !tg ||
+          !tg.initData
+        ) {
 
-    const toastTarget =
-      event.target.closest("[data-toast]");
+          console.log(
+            "Telegram WebApp initData unavailable"
+          );
 
-    if (toastTarget) {
-      showToast(toastTarget.dataset.toast);
-    }
-  });
+          return;
 
-  loadAccountData();
-</script>
+        }
+
+
+        try {
+
+          const response =
+            await fetch(
+              `${API_URL}/api/me?init_data=${encodeURIComponent(tg.initData)}`
+            );
+
+
+          const data =
+            await response.json();
+
+
+          if (
+            !response.ok ||
+            !data.ok
+          ) {
+
+            console.error(
+              "API error:",
+              data
+            );
+
+            showToast(
+              "Unable to load account data"
+            );
+
+            return;
+
+          }
+
+
+          const account =
+            data.user;
+
+
+          const tasks =
+            data.tasks || [];
+
+
+          const balanceAmount =
+            document.querySelector(
+              "#home-page .balance-amount"
+            );
+
+
+          if (balanceAmount) {
+
+            balanceAmount.innerHTML =
+              `${account.balance} <span>NX</span>`;
+
+          }
+
+
+          const withdrawBalance =
+            document.querySelector(
+              "#withdraw-page .balance-amount"
+            );
+
+
+          if (withdrawBalance) {
+
+            withdrawBalance.innerHTML =
+              `${account.balance} <span>NX</span>`;
+
+          }
+
+
+          const completedElements =
+            document.querySelectorAll(
+              "#profile-page .feature-card strong"
+            );
+
+
+          if (
+            completedElements.length > 0
+          ) {
+
+            completedElements[0].textContent =
+              account.completed_tasks;
+
+          }
+
+
+          const referralProgress =
+            document.querySelector(
+              "#referral-page .feature-card strong"
+            );
+
+
+          if (referralProgress) {
+
+            referralProgress.textContent =
+              `${account.referrals} / 5`;
+
+          }
+
+
+          const taskCards =
+            document.querySelectorAll(
+              "#tasks-page .task-card"
+            );
+
+
+          tasks.forEach((task) => {
+
+            const card =
+              [...taskCards].find(
+                (el) =>
+                  el.querySelector(
+                    ".task-title"
+                  )?.textContent.trim() ===
+                  task.title
+              );
+
+
+            if (!card) return;
+
+
+            const action =
+              card.querySelector(
+                ".task-action"
+              );
+
+
+            if (!action) return;
+
+
+            if (
+              task.status ===
+              "completed"
+            ) {
+
+              action.textContent =
+                "Completed";
+
+              action.disabled =
+                true;
+
+            } else if (
+              task.status ===
+              "pending"
+            ) {
+
+              action.textContent =
+                "Pending";
+
+            }
+
+          });
+
+
+          console.log(
+            "NX account loaded:",
+            data
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Failed to load account:",
+            error
+          );
+
+          showToast(
+            "Connection error"
+          );
+
+        }
+
+      }
+
+
+      /* =====================================================
+         NX MINING FRONTEND
+         ===================================================== */
+
+      let miningActive =
+        false;
+
+
+      let miningStartedAt =
+        null;
+
+
+      let miningTimer =
+        null;
+
+
+      const MINING_RATE =
+        1;
+
+
+      const MINING_SESSION =
+        60 * 60 * 1000;
+
+
+      function toggleMining() {
+
+        if (miningActive) {
+
+          stopMining();
+
+        } else {
+
+          startMining();
+
+        }
+
+      }
+
+
+      function startMining() {
+
+        miningActive =
+          true;
+
+
+        miningStartedAt =
+          Date.now();
+
+
+        const miningButton =
+          document.getElementById(
+            "mining-button"
+          );
+
+
+        const miningStatus =
+          document.getElementById(
+            "mining-status"
+          );
+
+
+        if (miningButton) {
+
+          miningButton.textContent =
+            "Mining...";
+
+        }
+
+
+        if (miningStatus) {
+
+          miningStatus.textContent =
+            "Mining is active";
+
+        }
+
+
+        miningTimer =
+          setInterval(
+            updateMiningUI,
+            1000
+          );
+
+
+        updateMiningUI();
+
+
+        showToast(
+          "Mining started"
+        );
+
+      }
+
+
+      function stopMining() {
+
+        miningActive =
+          false;
+
+
+        clearInterval(
+          miningTimer
+        );
+
+
+        miningTimer =
+          null;
+
+
+        const miningButton =
+          document.getElementById(
+            "mining-button"
+          );
+
+
+        const miningStatus =
+          document.getElementById(
+            "mining-status"
+          );
+
+
+        if (miningButton) {
+
+          miningButton.textContent =
+            "Start Mining";
+
+        }
+
+
+        if (miningStatus) {
+
+          miningStatus.textContent =
+            "Mining stopped";
+
+        }
+
+
+        showToast(
+          "Mining stopped"
+        );
+
+      }
+
+
+      function updateMiningUI() {
+
+        if (
+          !miningStartedAt
+        ) {
+
+          return;
+
+        }
+
+
+        const elapsed =
+          Date.now() -
+          miningStartedAt;
+
+
+        const progress =
+          Math.min(
+            (elapsed /
+              MINING_SESSION) *
+              100,
+            100
+          );
+
+
+        const earned =
+          Math.floor(
+            (elapsed /
+              MINING_SESSION) *
+              MINING_RATE
+          );
+
+
+        const miningBalance =
+          document.getElementById(
+            "mining-balance"
+          );
+
+
+        const progressBar =
+          document.getElementById(
+            "mining-progress"
+          );
+
+
+        const progressText =
+          document.getElementById(
+            "mining-progress-text"
+          );
+
+
+        if (miningBalance) {
+
+          miningBalance.textContent =
+            earned;
+
+        }
+
+
+        if (progressBar) {
+
+          progressBar.style.width =
+            `${progress}%`;
+
+        }
+
+
+        if (progressText) {
+
+          progressText.textContent =
+            `${Math.floor(progress)}%`;
+
+        }
+
+
+        const remaining =
+          Math.max(
+            MINING_SESSION -
+              elapsed,
+            0
+          );
+
+
+        const minutes =
+          Math.floor(
+            remaining /
+              60000
+          );
+
+
+        const seconds =
+          Math.floor(
+            (remaining %
+              60000) /
+              1000
+          );
+
+
+        const miningTime =
+          document.getElementById(
+            "mining-time"
+          );
+
+
+        if (miningTime) {
+
+          miningTime.textContent =
+            `${minutes}m ${seconds}s remaining`;
+
+        }
+
+
+        if (
+          progress >=
+          100
+        ) {
+
+          stopMining();
+
+
+          const status =
+            document.getElementById(
+              "mining-status"
+            );
+
+
+          if (status) {
+
+            status.textContent =
+              "Session completed";
+
+          }
+
+
+          showToast(
+            "Mining session completed"
+          );
+
+        }
+
+      }
+
+
+      document.addEventListener(
+        "click",
+        (event) => {
+
+          const pageTarget =
+            event.target.closest(
+              "[data-page]"
+            );
+
+
+          if (pageTarget) {
+
+            showPage(
+              pageTarget.dataset.page
+            );
+
+          }
+
+
+          const toastTarget =
+            event.target.closest(
+              "[data-toast]"
+            );
+
+
+          if (toastTarget) {
+
+            showToast(
+              toastTarget.dataset.toast
+            );
+
+          }
+
+        }
+      );
+
+
+      loadAccountData();
+
+    </script>
+
   </body>
 </html>
